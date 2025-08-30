@@ -1,6 +1,5 @@
 package com.noteapp.ui.screen
 
-import android.R.attr.onClick
 import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.noteapp.R
+import com.noteapp.components.EmptyView
 import com.noteapp.components.NoteCardRow
 import com.noteapp.ui.theme.Primary
 import com.noteapp.ui.theme.textColor
@@ -88,25 +89,28 @@ fun HomeScreen(context: Context, navController: NavController, noteViewModel: No
                     Icon(Icons.Filled.Add, "Add new item")
                 }
             }) { paddingValues ->
-            LazyColumn(modifier = Modifier.padding(paddingValues)) {
-                items(noteList.size) { index ->
-                    val note = noteList[index]
-
-                    NoteCardRow(
-                        note = note,
-                        onNoteClicked = { selectedNote ->
-                            // Navigate to detail screen with selected note
-                            navController.currentBackStackEntry?.savedStateHandle?.set(
-                                key = "note_obj",
-                                value = selectedNote
-                            )
-                            navController.navigate("NoteDetail")
-                        },
-                        onNoteDelete = { noteId ->
-                            noteViewModel.removeNote(note) // remove from list
-                        }
-                    )
+            if(noteList.isNotEmpty()){
+                LazyColumn(modifier = Modifier.padding(paddingValues)) {
+                    items(noteList.size) { index ->
+                        val note = noteList[index]
+                        NoteCardRow(
+                            note = note,
+                            onNoteClicked = { selectedNote ->
+                                // Navigate to detail screen with selected note
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    key = "note_obj",
+                                    value = selectedNote
+                                )
+                                navController.navigate("NoteDetail")
+                            },
+                            onNoteDelete = { noteId ->
+                                noteViewModel.removeNote(note) // remove from list
+                            }
+                        )
+                    }
                 }
+            }else {
+                EmptyView(imageResId = R.drawable.ic_empty_list, message = "Create your first note !")
             }
         }
     }

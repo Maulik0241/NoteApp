@@ -82,7 +82,7 @@ fun NoteCardRowPreview() {
         id = "1",
         title = "Sample Note Title",
         description = "This is a short preview of the note content.",
-        color = Color(0xFFE0BBE4)
+        colorLong = Color(0xFFE0BBE4).value.toLong()
     )
 
     NoteCardRow(

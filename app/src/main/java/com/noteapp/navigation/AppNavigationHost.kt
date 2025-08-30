@@ -16,8 +16,8 @@ fun AppNavigationHost(context: Context,noteViewModel: NoteViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("home") { HomeScreen(context,navController,noteViewModel) }
-        composable("addOrEditNote") { AddOrEditNoteScreen(context,navController,noteViewModel) }
-        composable("noteDetail") { NoteDetailScreen(navController,noteViewModel) }
+        composable("addOrEditNote") { AddOrEditNoteScreen(navController,noteViewModel) }
+        composable("noteDetail") { NoteDetailScreen(navController) }
         composable("searchNotes") { SearchNoteScreen(noteViewModel = noteViewModel) }
     }
 }

@@ -8,19 +8,11 @@
 
     class NoteViewModel : ViewModel() {
         private val _notes = MutableLiveData<ArrayList<Note>>().apply {
-            value = arrayListOf(
-                Note("1", "Shopping List", "", Color(0xFFFFF176)),
-                Note("2", "Workout Plan", "", Color(0xFF80DEEA)),
-                Note("3", "Meeting Notes", "", Color(0xFFE1BEE7))
-            )
+            value = arrayListOf()
         }
         val notes: LiveData<ArrayList<Note>> = _notes
         private val _filteredNotes = MutableLiveData<ArrayList<Note>>().apply {
-            value = arrayListOf(
-                Note("1", "Shopping List", "", Color(0xFFFFF176)),
-                Note("2", "Workout Plan", "", Color(0xFF80DEEA)),
-                Note("3", "Meeting Notes", "", Color(0xFFE1BEE7))
-            )
+            value = arrayListOf()
         }
         val filteredNotes: LiveData<ArrayList<Note>> = _filteredNotes
         /**
